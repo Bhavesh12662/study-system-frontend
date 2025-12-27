@@ -1,0 +1,42 @@
+body {
+  font-family: Arial;
+  background: #f4f6ff;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  width: 450px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+}
+
+button {
+  padding: 8px 14px;
+  margin: 4px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.primary { background: #007bff; color: white; }
+.warning { background: orange; color: white; }
+.success { background: green; color: white; }
+.danger { background: red; color: white; }
+
+.timer {
+  font-size: 28px;
+  margin: 10px 0;
+}
+
+.message {
+  margin-top: 10px;
+  font-weight: bold;
+}

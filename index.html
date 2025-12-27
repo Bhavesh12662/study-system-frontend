@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Study & Attendance Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+     <button onclick="logout()" style="position: absolute; top: 10px; right: 10px;">Logout</button>
+  <div class="container">   
+
+    <h1>📚 Study & Attendance Tracker</h1>
+    <!-- Attendance -->
+    <section class="card">
+      <h2>Attendance</h2>
+
+      <p>Status: <strong id="attendanceStatus">Not Marked</strong></p>
+
+      <button id="presentBtn" class="success">Present</button>
+      <button id="absentBtn" class="danger">Absent</button>
+    </section>
+
+    <!-- Study Timer -->
+    <section class="card">
+      <h2>Study Timer</h2>
+
+      <input id="subjectInput" type="text" placeholder="Enter Subject (e.g. Maths)" />
+
+      <div id="TimmerDisplay" class="timer">00:00:00</div>
+
+      <button id="startBtn" class="primary">Start</button>
+      <button id="stopBtn" class="warning">Stop</button>
+    </section>
+
+    <!-- Summary -->
+    <section class="card">
+      <h2>Study Summary</h2>
+      <div id="summary"></div>
+    </section>
+    <section class="card">
+  <h2>📅 Weekly Report</h2>
+
+  <p id="weekStudy">Study: —</p>
+  <p id="weekAttendance">Attendance: —</p>
+  <p id="weekPercentage">Attendance %: —</p>
+</section>
+
+
+    <p id="messageBox" class="message"></p>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
