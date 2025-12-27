@@ -1,5 +1,5 @@
 // ================= BASE URL OF BACKEND =================
-study-system-backend-production.up.railway.app
+const API ="study-system-backend-production.up.railway.app";
 
 
 // ================= ELEMENTS =================
