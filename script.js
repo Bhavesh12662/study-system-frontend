@@ -1,5 +1,7 @@
 // ================= BASE URL OF BACKEND =================
-const API = "https://api.promptify.tech";
+const API = "https://study-system-backend-production.up.railway.app";
+
+//const API = "https://api.promptify.tech";
 // ================= ELEMENTS =================
 const presentBtn = document.getElementById("presentBtn");
 const absentBtn = document.getElementById("absentBtn");
