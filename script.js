@@ -1,5 +1,5 @@
 // ================= BASE URL OF BACKEND =================
-const API = "https://study-system-backend.onrender.com";
+study-system-backend-production.up.railway.app
 
 
 // ================= ELEMENTS =================
