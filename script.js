@@ -1,5 +1,6 @@
 // ================= BASE URL OF BACKEND =================
-const API = "http://localhost:5000";
+const API = "https://study-system-backend.onrender.com";
+
 
 // ================= ELEMENTS =================
 const presentBtn = document.getElementById("presentBtn");
