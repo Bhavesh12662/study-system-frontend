@@ -1,42 +1,189 @@
-body {
-  font-family: Arial;
-  background: #f4f6ff;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
+/* ====== MODERN LAYOUT ====== */
+
+body{
+  font-family: "Segoe UI", Arial;
+  background:#f4f6ff;
+  margin:0;
+  display:flex;
+  min-height:100vh;
 }
 
-.container {
-  width: 450px;
+/* LEFT SIDEBAR LOGO + NAV */
+
+.sidebar{
+  width:260px;
+  background:#1f5088;
+  color:white;
+  padding:25px;
+  box-shadow: 4px 0 12px rgba(0,0,0,.15);
 }
 
-.card {
-  background: white;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+.sidebar h2{
+  margin-top:0;
+  font-size:22px;
 }
 
-button {
-  padding: 8px 14px;
-  margin: 4px;
+.header-nav{
+  margin-top:40px;
+  display:flex;
+  flex-direction:column;
+}
+
+.header-nav a{
+  color:white;
+  padding:10px 0;
+  text-decoration:none;
+  opacity:.9;
+}
+
+.header-nav a:hover{
+  opacity:1;
+  text-decoration:underline;
+}
+
+/* MAIN CONTENT AREA */
+
+.content{
+  padding:50px;
+  flex:1;
+}
+
+.content h1{
+  font-size:36px;
+  margin-bottom:10px;
+}
+
+.content p{
+  font-size:15px;
+  color:#333;
+}
+
+/* DASHBOARD LINK */
+
+.content a{
+  display:inline-block;
+  margin-top:10px;
+  color:#0066ff;
+  text-decoration:none;
+}
+
+/* FEATURE CARDS */
+
+.card{
+  background:white;
+  padding:18px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+  margin-top:18px;
+  font-size:15px;
+}
+
+/* FOOTER */
+
+.footer{
+  text-align:center;
+  padding:20px;
+  color:#444;
+  margin-top:25px;
+  border-top:1px solid #e3e6f0;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  body{
+    flex-direction:column;
+  }
+
+  .sidebar{
+    width:100%;
+    text-align:center;
+  }
+
+  .header-nav{
+    flex-direction:row;
+    justify-content:center;
+    gap:15px;
+  }
+
+  .content{
+    padding:20px;
+  }
+}
+.to{
+  display:inline-block;
+  margin-top:10px;
+  color:#2c2d30;
+  text-decoration:none;
+}
+/* DASHBOARD CARD WRAPPER */
+.content{
+  padding:40px;
+  flex:1;
+}
+
+/* Make dashboard UI look like a card */
+.content h2, 
+.content p, 
+.content button, 
+.content input, 
+#summary{
+  max-width:700px;
+}
+
+.dashboard-box{
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
+  border:1px solid #e5e8f0;
+}
+.success{
+  background-color: #4CAF50;
+  color: white;
   border: none;
-  border-radius: 6px;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
-}
-
-.primary { background: #007bff; color: white; }
-.warning { background: orange; color: white; }
-.success { background: green; color: white; }
-.danger { background: red; color: white; }
-
-.timer {
-  font-size: 28px;
-  margin: 10px 0;
-}
-
-.message {
-  margin-top: 10px;
+  font-size: 16px;
   font-weight: bold;
+}
+.danger{
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+button:hover{
+  background-color: #20b313;
+}
+.primary { 
+  background: #4f46e5;
+  color: white; 
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}     /* Start button */
+.warning {
+  background: #f59e0b; 
+  color: white; 
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  }     /* Stop button */
+  button:hover{
+  opacity: .9;
+  transform: translateY(-1px);
+  transition: .2s;
 }

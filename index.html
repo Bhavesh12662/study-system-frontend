@@ -1,57 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Study & Attendance Tracker</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Dashboard - Study System</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-     <button onclick="logout()" style="position: absolute; top: 10px; right: 10px;">Logout</button>
-  <div class="container">   
 
-    <h1>📚 Study & Attendance Tracker</h1>
-    <!-- Attendance -->
-    <section class="card">
-      <h2>Attendance</h2>
+<!-- Sidebar -->
+<div class="sidebar">
+  <h2>📚 Dashboard</h2>
 
-      <p>Status: <strong id="attendanceStatus">Not Marked</strong></p>
-
-      <button id="presentBtn" class="success">Present</button>
-      <button id="absentBtn" class="danger">Absent</button>
-    </section>
-
-    <!-- Study Timer -->
-    <section class="card">
-      <h2>Study Timer</h2>
-
-      <input id="subjectInput" type="text" placeholder="Enter Subject (e.g. Maths)" />
-
-      <div id="TimmerDisplay" class="timer">00:00:00</div>
-
-      <button id="startBtn" class="primary">Start</button>
-      <button id="stopBtn" class="warning">Stop</button>
-    </section>
-
-    <!-- Summary -->
-    <section class="card">
-      <h2>Study Summary</h2>
-      <div id="summary"></div>
-    </section>
-    <section class="card">
-  <h2>📅 Weekly Report</h2>
-
-  <p id="weekStudy">Study: —</p>
-  <p id="weekAttendance">Attendance: —</p>
-  <p id="weekPercentage">Attendance %: —</p>
-</section>
-
-
-    <p id="messageBox" class="message"></p>
-
+  <div class="header-nav">
+    <a href="home.html">Home</a>
+    <a href="index.html">Dashboard</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
   </div>
+</div>
 
-  <script src="script.js"></script>
+<!-- Dashboard Content -->
+<div class="content dashboard-box">
+
+  <h2>Status: <span id="attendanceStatus">Not Marked</span></h2>
+  <button id="presentBtn" class="success" style="background-color: rgb(133, 160, 235); color: white;">Present</button>
+  <button id="absentBtn" class="danger">Absent</button>
+
+  <hr>
+
+  <h2>Study Timer</h2>
+  <input id="subjectInput" placeholder="Enter Subject">
+  <h1 id="TimmerDisplay">00:00:00</h1>
+
+  <button id="startBtn" class="primary">Start</button>
+  <button id="stopBtn" class="warning">Stop</button>
+
+  <p id="messageBox"></p>
+
+  <hr>
+
+  <h2>Study Summary</h2>
+  <div id="summary">Loading...</div>
+
+  <hr>
+
+  <h2>Weekly Report</h2>
+  <p id="weekStudy">Study: -</p>
+  <p id="weekAttendance">Attendance: -</p>
+  <p id="weekPercentage">Attendance %: -</p>
+
+  <p class="footer">© 2025 Promptify - Study System</p>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>

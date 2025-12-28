@@ -1,5 +1,5 @@
 // ================= BASE URL OF BACKEND =================
-const API = "https://api.promptify.tech";
+const API = "https://study-system-backend-1.onrender.com";
 
 // ================= ELEMENTS =================
 const presentBtn = document.getElementById("presentBtn");
@@ -19,17 +19,21 @@ const summary = document.getElementById("summary");
 async function loadSummary() {
   summary.innerHTML = "Loading...";
 
-  const res = await fetch(`${API}/study`);
-  const data = await res.json();
+  try {
+    const res = await fetch(`${API}/study`);
+    const data = await res.json();
 
-  summary.innerHTML = "";
+    summary.innerHTML = "";
 
-  data.forEach((s, index) => {
-    const div = document.createElement("div");
-    const mins = Math.floor(s.duration / (1000 * 60));
-    div.textContent = `${index + 1}. ${s.subject} — ${mins} min`;
-    summary.appendChild(div);
-  });
+    data.forEach((s, index) => {
+      const div = document.createElement("div");
+      const mins = Math.floor(s.duration / (1000 * 60));
+      div.textContent = `${index + 1}. ${s.subject} — ${mins} min`;
+      summary.appendChild(div);
+    });
+  } catch (e) {
+    summary.innerHTML = "Failed to load summary";
+  }
 }
 
 
@@ -37,34 +41,34 @@ async function loadSummary() {
 presentBtn.addEventListener("click", async () => {
   attendanceStatus.textContent = "Present";
 
-  await fetch(`${API}/attendance`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      status: "Present",
-      date: new Date()
-    }),
-  });
-
-  messageBox.textContent = "Attendance marked: Present";
-  loadWeeklyReport();
+  await saveAttendance("Present");
 });
 
 absentBtn.addEventListener("click", async () => {
   attendanceStatus.textContent = "Absent";
 
-  await fetch(`${API}/attendance`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      status: "Absent",
-      date: new Date()
-    }),
-  });
-
-  messageBox.textContent = "Attendance marked: Absent";
-  loadWeeklyReport();
+  await saveAttendance("Absent");
 });
+
+async function saveAttendance(status) {
+  try {
+    await fetch(`${API}/attendance`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        status,
+        date: new Date()
+      }),
+    });
+
+    messageBox.textContent = `Attendance marked: ${status}`;
+    loadWeeklyReport();
+
+  } catch (e) {
+    messageBox.textContent = "Failed to save attendance";
+  }
+}
+
 
 
 // ================= STUDY TIMER =================
@@ -89,6 +93,7 @@ startBtn.addEventListener("click", () => {
   }, 1000);
 });
 
+
 stopBtn.addEventListener("click", async () => {
   if (startTime === null) return;
 
@@ -98,18 +103,22 @@ stopBtn.addEventListener("click", async () => {
   const duration = endTime - startTime;
   const subject = subjectInput.value || "No Subject";
 
-  await fetch(`${API}/study`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      subject,
-      startTime,
-      endTime,
-      duration
-    }),
-  });
+  try {
+    await fetch(`${API}/study`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        subject,
+        startTime,
+        endTime,
+        duration
+      }),
+    });
 
-  messageBox.textContent = "Study session saved";
+    messageBox.textContent = "Study session saved";
+  } catch {
+    messageBox.textContent = "Failed to save study session";
+  }
 
   startTime = null;
   timerDisplay.textContent = "00:00:00";
@@ -119,50 +128,58 @@ stopBtn.addEventListener("click", async () => {
 });
 
 
+
 // ================= WEEKLY REPORT =================
 async function loadWeeklyReport() {
   const last7 = Date.now() - 7 * 24 * 60 * 60 * 1000;
 
-  // STUDY
-  const studyRes = await fetch(`${API}/study`);
-  const studyData = await studyRes.json();
+  try {
+    // STUDY
+    const studyRes = await fetch(`${API}/study`);
+    const studyData = await studyRes.json();
 
-  let totalMs = 0;
+    let totalMs = 0;
 
-  studyData.forEach(s => {
-    if (s.endTime >= last7) totalMs += s.duration;
-  });
+    studyData.forEach(s => {
+      if (s.endTime >= last7) totalMs += s.duration;
+    });
 
-  const hours = Math.floor(totalMs / (1000 * 60 * 60));
-  const mins = Math.floor((totalMs % (1000 * 60 * 60)) / (1000 * 60));
+    const hours = Math.floor(totalMs / (1000 * 60 * 60));
+    const mins = Math.floor((totalMs % (1000 * 60 * 60)) / (1000 * 60));
 
-  document.getElementById("weekStudy").textContent =
-    `Study: ${hours} hr ${mins} min`;
+    document.getElementById("weekStudy").textContent =
+      `Study: ${hours} hr ${mins} min`;
 
-  // ATTENDANCE
-  const attRes = await fetch(`${API}/attendance`);
-  const attData = await attRes.json();
 
-  let days = new Set();
+    // ATTENDANCE
+    const attRes = await fetch(`${API}/attendance`);
+    const attData = await attRes.json();
 
-  attData.forEach(a => {
-    const d = new Date(a.date);
+    let days = new Set();
 
-    if (d.getTime() >= last7 && a.status === "Present") {
-      days.add(d.toISOString().slice(0, 10)); // yyyy-mm-dd
-    }
-  });
+    attData.forEach(a => {
+      const d = new Date(a.date);
 
-  const presentDays = days.size;
+      if (d.getTime() >= last7 && a.status === "Present") {
+        days.add(d.toISOString().slice(0, 10));
+      }
+    });
 
-  document.getElementById("weekAttendance").textContent =
-    `Attendance: ${presentDays} / 7 days`;
+    const presentDays = days.size;
 
-  const percent = Math.min(100, Math.round((presentDays / 7) * 100));
+    document.getElementById("weekAttendance").textContent =
+      `Attendance: ${presentDays} / 7 days`;
 
-  document.getElementById("weekPercentage").textContent =
-    `Attendance %: ${percent}%`;
+    const percent = Math.min(100, Math.round((presentDays / 7) * 100));
+
+    document.getElementById("weekPercentage").textContent =
+      `Attendance %: ${percent}%`;
+
+  } catch (e) {
+    document.getElementById("weekStudy").textContent = "Failed to load report";
+  }
 }
+
 
 
 // ================= INIT =================
