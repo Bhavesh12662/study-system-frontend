@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Register - Study System</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <h2>📚 Dashboard</h2>
+
+  <div class="header-nav">
+    <a href="home.html">Home</a>
+    <a href="index.html">Dashboard</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+    <a href="study-tips.html">Study Tips</a>
+    <a href="time-tracking.html">Time Tracking</a>
+    <a href="attendance-benefits.html">Attendance</a>
+  </div>
+</div>
+
+<div class="content">
+  <div class="auth-card">
+    <h2>Create account</h2>
+    <form id="registerForm">
+      <label>Full name</label>
+      <input type="text" id="regName" required>
+
+      <label>Email</label>
+      <input type="email" id="regEmail" required>
+
+      <label>Password</label>
+      <input type="password" id="regPassword" required>
+
+      <label>Confirm Password</label>
+      <input type="password" id="regConfirm" required>
+
+      <button type="submit" class="primary">Register</button>
+    </form>
+
+    <p class="muted">Already have an account? <a href="login.html">Login</a></p>
+    <p id="registerMessage" class="error"></p>
+  </div>
+</div>
+
+</body>
+</html>

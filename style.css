@@ -187,3 +187,47 @@ button:hover{
   transform: translateY(-1px);
   transition: .2s;
 }
+
+/* ===== AUTH PAGES ===== */
+.auth-card{
+  max-width:420px;
+  background:white;
+  margin:40px auto;
+  padding:24px;
+  border-radius:10px;
+  box-shadow:0 8px 30px rgba(15,23,42,.06);
+  border:1px solid #eef2ff;
+}
+.auth-card h2{
+  margin-top:0;
+}
+.auth-card label{
+  display:block;
+  margin-top:12px;
+  font-size:14px;
+  color:#333;
+}
+.auth-card input{
+  width:100%;
+  padding:10px 12px;
+  margin-top:6px;
+  border:1px solid #dfe7ff;
+  border-radius:8px;
+  font-size:15px;
+}
+.auth-card .muted{
+  color:#666;
+  margin-top:12px;
+}
+.auth-card .error{
+  color:#c62828;
+  margin-top:10px;
+}
+.auth-card .success{
+  color:#1e7e34;
+  margin-top:10px;
+}
+
+@media(max-width:800px){
+  .auth-card{ margin:20px; }
+}
